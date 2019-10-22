@@ -7,65 +7,59 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: MyHomePage(title: 'Meine kleine Flutter App'),);
+      title: 'My First App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: JanasKleineSeite(),
+    );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-
-  final String title;
-
+class JanasKleineSeite extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _JanasKleineSeiteState createState() => _JanasKleineSeiteState();
 }
 
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+class _JanasKleineSeiteState extends State<JanasKleineSeite> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
-        title: Text(widget.title),
+        title: Text("Meine supadupa-Seite"),
       ),
-      body: Center(
-
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .display1,
-            ),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Image.network("https://vignette.wikia.nocookie.net/harry-potter-lexikon/images/d/d0/Hermine_Granger.jpg/revision/latest?cb=20181108160753&path-prefix=de"),
+              machNeReihe("Lieblingstier", "Hund"),
+              machNeReihe("Lieblingsfarbe", "gruen"),
+              machNeReihe("Lieblingsmusik", "alles"),
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  Widget machNeReihe(attribut, wert) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Text(attribut,
+              style: TextStyle(
+                fontSize: 30,
+              )),
+          Text(wert,
+              style: TextStyle(
+                fontSize: 30,
+              )),
+        ],
+      ),
     );
   }
 }
